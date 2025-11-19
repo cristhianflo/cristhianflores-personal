@@ -1,10 +1,19 @@
 ---
 import "../styles/global.css";
+import NavMenu from "../components/NavMenu";
 
 const years = new Date().getFullYear() - 2023;
+
+const navItems = [
+  { href: "#about-me", label: "Sobre mí" },
+  { href: "#education", label: "Educación" },
+  { href: "#work-experience", label: "Experiencia laboral" },
+  { href: "#projects", label: "Proyectos" },
+  { href: "#skills", label: "Habilidades" },
+];
 ---
 
-<html lang="en">
+<html lang="en" class="scrool-smooth">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -21,8 +30,8 @@ const years = new Date().getFullYear() - 2023;
       <aside
         class="lg:w-5/12 lg:sticky lg:top-0 lg:max-h-screen py-28 flex flex-col lg:items-end lg:text-right gap-6"
       >
-        <div class="w-10/12">
-          <div class="space-y-2 mb-6">
+        <div class="w-10/12 flex flex-col gap-6">
+          <div class="space-y-2">
             <h1 class="font-bold text-4xl">Cristhian Flores</h1>
             <p class="text-xl font-semibold">Fullstack Developer</p>
           </div>
@@ -30,11 +39,14 @@ const years = new Date().getFullYear() - 2023;
             Desarrollador web con más de {years} años de experiencia creando aplicaciones
             profesionales
           </p>
+
+          <!-- Navigation menu  -->
+          <NavMenu items={navItems} client:load />
         </div>
       </aside>
       <div class="w-7/12 text-zinc-300 flex flex-col gap-6 py-28">
         <!-- About me -->
-        <div>
+        <section id="about-me">
           <p>
             Soy un desarrollador web bilingüe con inglés avanzado (C1) con más
             de 2 años de experiencia como freelancer, desarrollando aplicaciones
@@ -47,9 +59,11 @@ const years = new Date().getFullYear() - 2023;
           </p>
 
           <p></p>
-        </div>
-        <div class="min-h-screen"></div>
-        <div class="min-h-screen"></div>
+        </section>
+        <section class="min-h-screen" id="education"></section>
+        <section class="min-h-screen" id="work-experience"></section>
+        <section class="min-h-screen" id="projects"></section>
+        <section class="min-h-screen" id="skills"></section>
       </div>
     </main>
   </body>
