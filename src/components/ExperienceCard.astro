@@ -1,0 +1,42 @@
+---
+interface Props {
+  position: string;
+  startDate: string;
+  endDate?: string;
+  company?: string;
+  location?: string;
+  description: string;
+}
+
+const {
+  position,
+  startDate,
+  endDate = "Presente",
+  company = "Freelance",
+  location = "Remoto",
+  description,
+} = Astro.props;
+---
+
+<div class="flex gap-4">
+  <div
+    class="text-zinc-400 self-center uppercase text-sm whitespace-nowrap space-y-1.5"
+  >
+    <p>
+      {startDate} - {endDate}
+    </p>
+    <hr />
+    <p class="italic">{location}</p>
+  </div>
+  <span class="bg-amber-400/70 w-[2px] h-24 self-center"></span>
+  <div class="flex flex-col gap-2">
+    <h2 class="text-lg flex items-center text-zinc-100 font-semibold">
+      {position}
+      <span class="text-xs text-amber-400 px-2">■</span>
+      <p>{company}</p>
+    </h2>
+    <p>
+      {description}
+    </p>
+  </div>
+</div>
