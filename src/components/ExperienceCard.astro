@@ -6,6 +6,7 @@ interface Props {
   company?: string;
   location?: string;
   description: string;
+  technologies?: string[];
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   company = "Freelance",
   location = "Remoto",
   description,
+  technologies,
 } = Astro.props;
 ---
 
@@ -35,8 +37,19 @@ const {
       <span class="text-xs text-amber-400 px-2">■</span>
       <p>{company}</p>
     </h2>
-    <p>
+    <p class="text-balance text-sm">
       {description}
     </p>
+    {
+      technologies && (
+        <div class="flex gap-2 flex-wrap">
+          {technologies.map((tech) => (
+            <span class="rounded-full bg-amber-400/10 text-amber-300 border border-amber-300 text-xs px-2 py-1 mt-2">
+              {tech}
+            </span>
+          ))}
+        </div>
+      )
+    }
   </div>
 </div>
