@@ -44,6 +44,7 @@ function NavMenu({ items }: NavMenuProps) {
       <ul className="flex flex-col gap-2 text-zinc-400 items-end">
         {items.map((item) => (
           <NavItem
+            key={item.href}
             href={item.href}
             text={item.label}
             isActive={item.href === active}
