@@ -21,8 +21,9 @@ const {
 ---
 
 <div class="flex gap-4">
+  <!-- Date & Location -->
   <div
-    class="text-zinc-400 self-center uppercase text-sm whitespace-nowrap space-y-1.5"
+    class="text-zinc-400 uppercase text-sm flex flex-col whitespace-nowrap space-y-1.5 leading-normal"
   >
     <p>
       {startDate} - {endDate}
@@ -30,16 +31,26 @@ const {
     <hr />
     <p class="italic">{location}</p>
   </div>
-  <span class="bg-amber-400/70 w-[2px] h-24 self-center"></span>
+
+  <!-- Vertical separator -->
+  <span class="bg-amber-400/70 w-[2px] h-24"></span>
+
+  <!-- Main content -->
   <div class="flex flex-col gap-2">
-    <h2 class="text-lg flex items-center text-zinc-100 font-semibold">
-      {position}
+    <!-- Position & company -->
+    <div class="inline-flex items-center gap-1">
+      <h2 class="text-zinc-100 font-semibold">
+        {position}
+      </h2>
       <span class="text-xs text-amber-400 px-2">■</span>
-      <p>{company}</p>
-    </h2>
+      <p class="text-amber-400">{company}</p>
+    </div>
+
+    <!-- Description -->
     <p class="text-balance text-sm">
       {description}
     </p>
+    <!-- Technologies -->
     {
       technologies && (
         <div class="flex gap-2 flex-wrap">
