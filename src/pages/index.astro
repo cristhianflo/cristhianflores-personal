@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import NavMenu from "../components/NavMenu";
+import ExperienceCard from "../components/ExperienceCard.astro";
 
 const years = new Date().getFullYear() - 2023;
 
@@ -10,9 +11,52 @@ const navItems = [
   { href: "#projects", label: "Proyectos" },
   { href: "#skills", label: "Habilidades" },
 ];
+
+const experience = [
+  {
+    position: "Desarrollador Fullstack",
+    company: "TailorSheet",
+    location: "Remoto",
+    startDate: "Dic. 2023",
+    endDate: "Presente",
+    description:
+      "Colaboración continua con TailorSheet desarrollando soluciones personalizadas que incluyen: el desarrollo de un plugin personalizado de WordPress incluyendo widgets de Elementor que mejoró los tiempos de carga de páginas criticas en un 85%, organicé más de 100 páginas con una taxonomía personalizada, y creé varias páginas corporativas optimizadas para SEO, velocidad y diseño responsive. Además, implementé una galería de imágenes en Laravel + React con subida múltiple y autenticación que sustituyó servicios externos, ahorrando 180 USD anuales, y unifiqué todo en un ecosistema coherente y escalable.",
+    technologies: [
+      "PHP",
+      "WordPress",
+      "Laravel",
+      "CSS",
+      "TailwindCSS",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "JQuery",
+    ],
+  },
+  {
+    position: "Desarrollador WordPress",
+    company: "Freelance",
+    location: "Remoto",
+    startDate: "Jun. 2023",
+    endDate: "Dic. 2023",
+    description:
+      "Brindé soporte técnico, optimización y corrección de errores para múltiples sitios WordPress de pymes, resolviendo bugs críticos y problemas de rendimiento en plazos de 1 a 3 semanas, mejorando SEO, tiempos de carga y seguridad, y manteniendo los proyectos mediante actualizaciones, hardening y mejoras continuas en la experiencia de usuario.",
+    technologies: ["PHP", "WordPress", "CSS", "JavaScript", "JQuery"],
+  },
+  {
+    position: "Desarrollador Fullstack",
+    company: "Freelance",
+    location: "Remoto",
+    startDate: "Mar. 2023",
+    endDate: "Jun. 2023",
+    description:
+      "Desarrollé una Single Page Application para la gestión de horarios de profesores usando VueJS, TailwindCSS y TypeScript, junto con un backend en PocketBase que manejó autenticación, permisos y base de datos; optimicé tiempos de carga y usabilidad con una UI responsiva y gestioné el proyecto de principio a fin, definiendo hitos, entregables y el despliegue final.",
+    technologies: ["VueJS", "TypeScript", "TailwindCSS", "PocketBase"],
+  },
+];
 ---
 
-<html lang="en" class="scrool-smooth">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -43,9 +87,9 @@ const navItems = [
           <NavMenu items={navItems} client:load />
         </div>
       </aside>
-      <div class="w-7/12 text-zinc-300 flex flex-col gap-6 py-28">
+      <div class="w-7/12 text-zinc-300 space-y-24 py-28">
         <!-- About me -->
-        <section class="min-h-screen" id="about-me">
+        <section class="scroll-mt-16" id="about-me">
           <p>
             Soy un desarrollador web bilingüe con inglés C1 y más de dos años
             trabajando como freelance, creando aplicaciones con React, Vue y
@@ -73,7 +117,23 @@ const navItems = [
             problemas que me causé por andar trasteando con Linux…
           </p>
         </section>
-        <section class="min-h-screen" id="work-experience"></section>
+        <section class="scroll-mt-16" id="work-experience">
+          <div class="flex flex-col gap-8">
+            {
+              experience.map((job) => (
+                <ExperienceCard
+                  position={job.position}
+                  company={job.company}
+                  startDate={job.startDate}
+                  endDate={job.endDate}
+                  location={job.location}
+                  description={job.description}
+                  technologies={job.technologies}
+                />
+              ))
+            }
+          </div>
+        </section>
         <section class="min-h-screen" id="projects"></section>
         <section class="min-h-screen" id="skills"></section>
       </div>
