@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import NavMenu from "../components/NavMenu";
 import ExperienceCard from "../components/ExperienceCard.astro";
+import ProjectCard from "../components/ProjectCard.astro";
 
 const years = new Date().getFullYear() - 2023;
 
@@ -52,6 +53,18 @@ const experience = [
     description:
       "Desarrollé una Single Page Application para la gestión de horarios de profesores usando VueJS, TailwindCSS y TypeScript, junto con un backend en PocketBase que manejó autenticación, permisos y base de datos; optimicé tiempos de carga y usabilidad con una UI responsiva y gestioné el proyecto de principio a fin, definiendo hitos, entregables y el despliegue final.",
     technologies: ["VueJS", "TypeScript", "TailwindCSS", "PocketBase"],
+  },
+];
+
+const projects = [
+  {
+    title: "Example project",
+    description: "This is an example project description.",
+    thumbnail: {
+      src: "https://placehold.co/163x91",
+      alt: "test",
+    },
+    technologies: ["Tech1", "Tech2", "Tech3"],
   },
 ];
 ---
@@ -134,7 +147,20 @@ const experience = [
             }
           </div>
         </section>
-        <section class="min-h-screen" id="projects"></section>
+        <section class="scroll-mt-16" id="projects">
+          <div class="flex flex-col gap-8">
+            {
+              projects.map((project) => (
+                <ProjectCard
+                  title={project.title}
+                  description={project.description}
+                  thumbnail={project.thumbnail}
+                  technologies={project.technologies}
+                />
+              ))
+            }
+          </div>
+        </section>
         <section class="min-h-screen" id="skills"></section>
       </div>
     </main>
