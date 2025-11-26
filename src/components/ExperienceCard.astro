@@ -20,10 +20,12 @@ const {
 } = Astro.props;
 ---
 
-<div class="flex gap-4">
+<div
+  class="group/experience relative flex gap-4 p-4 transition-all group-hover/experience-list:opacity-50 hover:!opacity-100"
+>
   <!-- Date & Location -->
   <div
-    class="text-zinc-400 uppercase text-sm flex flex-col whitespace-nowrap space-y-1.5 leading-normal"
+    class="flex flex-col space-y-1.5 text-sm leading-normal whitespace-nowrap text-zinc-400 uppercase"
   >
     <p>
       {startDate} - {endDate}
@@ -33,34 +35,39 @@ const {
   </div>
 
   <!-- Vertical separator -->
-  <span class="bg-amber-400/70 w-[2px] h-24"></span>
+  <span class="h-24 w-[2px] bg-amber-400/70"></span>
 
   <!-- Main content -->
   <div class="flex flex-col gap-2">
     <!-- Position & company -->
     <div class="inline-flex items-center gap-1">
-      <h2 class="text-zinc-100 font-semibold">
+      <h2 class="font-semibold text-zinc-100">
         {position}
       </h2>
-      <span class="text-xs text-amber-400 px-2">■</span>
+      <span class="px-2 text-xs text-amber-400">■</span>
       <p class="text-amber-400">{company}</p>
     </div>
 
     <!-- Description -->
-    <p class="text-balance text-sm">
+    <p class="text-sm text-balance">
       {description}
     </p>
     <!-- Technologies -->
     {
       technologies && (
-        <div class="flex gap-2 flex-wrap">
+        <div class="flex flex-wrap gap-2">
           {technologies.map((tech) => (
-            <span class="rounded-full bg-amber-400/10 text-amber-300 border border-amber-300 text-xs px-2 py-1 mt-2">
+            <span class="mt-2 rounded-full border border-amber-300 bg-amber-400/10 px-2 py-1 text-xs text-amber-300">
               {tech}
             </span>
           ))}
         </div>
       )
     }
+  </div>
+
+  <div
+    class="absolute inset-0 -z-10 hidden transition-all lg:block lg:group-hover/experience:bg-zinc-800/50"
+  >
   </div>
 </div>
