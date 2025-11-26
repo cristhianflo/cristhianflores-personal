@@ -17,25 +17,8 @@ const { title, description, thumbnail, technologies, url, repositoryUrl } =
 ---
 
 <div
-  class="group/project relative flex items-center gap-4 p-4 transition-all group-hover/project-list:opacity-50 hover:!opacity-100"
+  class="group/project relative flex items-center justify-between p-4 transition-all group-hover/project-list:opacity-50 hover:!opacity-100"
 >
-  <!-- Thumbnail -->
-  {
-    thumbnail && (
-      <img
-        alt={thumbnail.alt}
-        loading="lazy"
-        class="aspect-video border border-amber-400 object-cover"
-        src={thumbnail.src}
-        width="163"
-        height="92"
-      />
-    )
-  }
-
-  <!-- Vertical separator -->
-  <span class="h-[92px] w-[2px] bg-amber-400/70"></span>
-
   <!-- Main content -->
   <div class="flex flex-col gap-2">
     <!-- Title -->
@@ -81,6 +64,20 @@ const { title, description, thumbnail, technologies, url, repositoryUrl } =
     }
   </div>
 
+  <!-- Thumbnail -->
+  {
+    thumbnail && (
+      <img
+        alt={thumbnail.alt}
+        loading="lazy"
+        class="aspect-video border border-amber-400 object-cover"
+        src={thumbnail.src}
+        width="163"
+        height="92"
+      />
+    )
+  }
+
   <div
     class="absolute inset-0 -z-10 hidden transition-all lg:block lg:group-hover/project:bg-zinc-800/50"
   >
@@ -88,15 +85,13 @@ const { title, description, thumbnail, technologies, url, repositoryUrl } =
   <!-- Optional link to project -->
   {
     url && (
-      <>
-        <a
-          href={url}
-          target="_blank"
-          rel="noreferrer noopener"
-          class="absolute inset-0 h-full w-full"
-          aria-label={`${title} (opens in a new tab)`}
-        />
-      </>
+      <a
+        href={url}
+        target="_blank"
+        rel="noreferrer noopener"
+        class="absolute inset-0 h-full w-full"
+        aria-label={`${title} (opens in a new tab)`}
+      />
     )
   }
 </div>
