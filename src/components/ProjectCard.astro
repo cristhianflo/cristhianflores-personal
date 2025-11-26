@@ -1,6 +1,7 @@
 ---
 import { ExternalLink } from "@lucide/astro";
 import Git from "./icons/Git.astro";
+import { Image } from "astro:assets";
 interface Props {
   title: string;
   description: string;
@@ -68,7 +69,7 @@ const { title, description, thumbnail, technologies, url, repositoryUrl } =
   <!-- Thumbnail -->
   {
     thumbnail && (
-      <img
+      <Image
         alt={thumbnail.alt}
         loading="lazy"
         class="aspect-video border border-amber-400 object-cover"
