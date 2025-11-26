@@ -61,5 +61,15 @@ const { title, description, thumbnail, technologies, link } = Astro.props;
   </div>
 
   <!-- Optional link to project -->
-  {link && <a href={link} class="absolute z-10 w-full h-full inset-0" />}
+  {
+    link && (
+      <a
+        href={link}
+        target="_blank"
+        rel="noreferrer noopener"
+        class="absolute z-10 w-full h-full inset-0"
+        aria-label={`${title} (opens in a new tab)`}
+      />
+    )
+  }
 </div>
