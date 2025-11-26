@@ -8,75 +8,78 @@ interface Props {
     alt: string;
   };
   technologies?: string[];
-  link?: string;
+  url?: string;
 }
 
-const { title, description, thumbnail, technologies, link } = Astro.props;
+const { title, description, thumbnail, technologies, url } = Astro.props;
 ---
 
-<div class={`relative flex items-center transition-all gap-4 p-4 hover:!opacity-100 group-hover/project-list:opacity-50 ${link ? "group/project" : ""}`}>
+<div
+  class={`flex relative items-center transition-all gap-4 p-4 hover:!opacity-100 group-hover/project-list:opacity-50 ${url ? "group/project" : ""}`}
+>
   <div class="z-10 flex items-center gap-4">
-  <!-- Thumbnail -->
-  {
-    thumbnail && (
-      <img
-        alt={thumbnail.alt}
-        loading="lazy"
-        class="aspect-video object-cover border border-amber-400 "
-        src={thumbnail.src}
-        width="163"
-        height="92"
-      />
-    )
-  }
-
-  <!-- Vertical separator -->
-  <span class="bg-amber-400/70 w-[2px] h-[92px]"></span>
-
-  <!-- Main content -->
-  <div class="flex flex-col gap-2">
-    <!-- Title -->
-    <div
-                class="inline-flex items-center text-zinc-100 gap-1 group-hover/project:text-amber-400"
-    >
-      <h2 class="font-semibold transition-colors mr-1.5">
-        {title}
-      </h2>
-      <ExternalLink class="transition-all h-5 w-5" />
-    </div>
-
-    <!-- Description -->
-    <p class="text-balance text-sm">
-      {description}
-    </p>
-    <!-- Technologies -->
+    <!-- Thumbnail -->
     {
-      technologies && (
-        <div class="flex gap-2 flex-wrap">
-          {technologies.map((tech) => (
-            <span class="rounded-full bg-amber-400/10 text-amber-300 border border-amber-300 text-xs px-2 py-1 mt-2">
-              {tech}
-            </span>
-          ))}
-        </div>
+      thumbnail && (
+        <img
+          alt={thumbnail.alt}
+          loading="lazy"
+          class="aspect-video object-cover border border-amber-400 "
+          src={thumbnail.src}
+          width="163"
+          height="92"
+        />
       )
     }
-</div>
 
+    <!-- Vertical separator -->
+    <span class="bg-amber-400/70 w-[2px] h-[92px]"></span>
+
+    <!-- Main content -->
+    <div class="flex flex-col gap-2">
+      <!-- Title -->
+      <div
+        class="inline-flex items-center text-zinc-100 gap-1 group-hover/project:text-amber-400"
+      >
+        <h2 class="font-semibold transition-colors mr-1.5">
+          {title}
+        </h2>
+        <ExternalLink class="transition-all h-5 w-5" />
+      </div>
+
+      <!-- Description -->
+      <p class="text-balance text-sm">
+        {description}
+      </p>
+      <!-- Technologies -->
+      {
+        technologies && (
+          <div class="flex gap-2 flex-wrap">
+            {technologies.map((tech) => (
+              <span class="rounded-full bg-amber-400/10 text-amber-300 border border-amber-300 text-xs px-2 py-1 mt-2">
+                {tech}
+              </span>
+            ))}
+          </div>
+        )
+      }
+    </div>
   </div>
 
   <!-- Optional link to project -->
   {
-    link && (
-    <div class="absolute inset-0 z-0 hidden transition-all lg:block lg:group-hover/project:bg-zinc-800/50"></div>
+    url && (
+      <>
+        <div class="absolute inset-0 z-0 hidden transition-all lg:block lg:group-hover/project:bg-zinc-800/50" />
 
-      <a
-        href={link}
-        target="_blank"
-        rel="noreferrer noopener"
-        class="absolute z-20 w-full h-full inset-0"
-        aria-label={`${title} (opens in a new tab)`}
-      />
+        <a
+          href={url}
+          target="_blank"
+          rel="noreferrer noopener"
+          class="absolute z-20 w-full h-full inset-0"
+          aria-label={`${title} (opens in a new tab)`}
+        />
+      </>
     )
   }
 </div>
