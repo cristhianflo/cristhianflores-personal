@@ -65,6 +65,17 @@ const projects = [
       alt: "test",
     },
     technologies: ["Tech1", "Tech2", "Tech3"],
+    link: "https://test.com",
+  },
+  {
+    title: "Example project",
+    description: "This is an example project description.",
+    thumbnail: {
+      src: "https://placehold.co/163x91",
+      alt: "test",
+    },
+    technologies: ["Tech1", "Tech2", "Tech3"],
+    link: "https://test.com",
   },
 ];
 ---
@@ -148,7 +159,7 @@ const projects = [
           </div>
         </section>
         <section class="scroll-mt-16" id="projects">
-          <div class="flex flex-col gap-8">
+          <div class="flex flex-col gap-8 group/project-list">
             {
               projects.map((project) => (
                 <ProjectCard
@@ -156,6 +167,7 @@ const projects = [
                   description={project.description}
                   thumbnail={project.thumbnail}
                   technologies={project.technologies}
+                  link={project.link}
                 />
               ))
             }
