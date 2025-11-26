@@ -65,7 +65,8 @@ const projects = [
       alt: "test",
     },
     technologies: ["Tech1", "Tech2", "Tech3"],
-    link: "https://test.com",
+    url: "https://test.com",
+    repositoryUrl: "https://repo.com",
   },
   {
     title: "Example project",
@@ -168,6 +169,7 @@ const projects = [
                   thumbnail={project.thumbnail}
                   technologies={project.technologies}
                   url={project.url}
+                  repositoryUrl={project.repositoryUrl}
                 />
               ))
             }

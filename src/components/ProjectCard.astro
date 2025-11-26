@@ -1,5 +1,5 @@
 ---
-import { ExternalLink } from "@lucide/astro";
+import { ExternalLink, GitBranch } from "@lucide/astro";
 interface Props {
   title: string;
   description: string;
@@ -9,74 +9,89 @@ interface Props {
   };
   technologies?: string[];
   url?: string;
+  repositoryUrl?: string;
 }
 
-const { title, description, thumbnail, technologies, url } = Astro.props;
+const { title, description, thumbnail, technologies, url, repositoryUrl } =
+  Astro.props;
 ---
 
 <div
   class={`flex relative items-center transition-all gap-4 p-4 hover:!opacity-100 group-hover/project-list:opacity-50 ${url ? "group/project" : ""}`}
 >
-  <div class="z-10 flex items-center gap-4">
-    <!-- Thumbnail -->
+  <!-- Thumbnail -->
+  {
+    thumbnail && (
+      <img
+        alt={thumbnail.alt}
+        loading="lazy"
+        class="aspect-video border border-amber-400 object-cover"
+        src={thumbnail.src}
+        width="163"
+        height="92"
+      />
+    )
+  }
+
+  <!-- Vertical separator -->
+  <span class="h-[92px] w-[2px] bg-amber-400/70"></span>
+
+  <!-- Main content -->
+  <div class="flex flex-col gap-2">
+    <!-- Title -->
+    <div
+      class="inline-flex items-center gap-1 text-zinc-100 group-hover/project:text-amber-400"
+    >
+      <h2 class="mr-1.5 font-semibold transition-colors">
+        {title}
+      </h2>
+      {url && <ExternalLink class="h-5 w-5 transition-all" />}
+    </div>
+
+    <!-- Description -->
+    <p class="text-sm text-balance">
+      {description}
+    </p>
+
     {
-      thumbnail && (
-        <img
-          alt={thumbnail.alt}
-          loading="lazy"
-          class="aspect-video object-cover border border-amber-400 "
-          src={thumbnail.src}
-          width="163"
-          height="92"
-        />
+      repositoryUrl && (
+        <a
+          href={repositoryUrl}
+          rel="noreferrer noopener"
+          target="_blank"
+          class="relative z-10 inline-flex w-max items-center gap-1.5 text-sm text-zinc-100 transition-colors hover:text-amber-400"
+          aria-label={`${title} (opens in a new tab)`}
+        >
+          <GitBranch size={16} />
+          <span class="pr-2">Go to repository</span>
+        </a>
       )
     }
-
-    <!-- Vertical separator -->
-    <span class="bg-amber-400/70 w-[2px] h-[92px]"></span>
-
-    <!-- Main content -->
-    <div class="flex flex-col gap-2">
-      <!-- Title -->
-      <div
-        class="inline-flex items-center text-zinc-100 gap-1 group-hover/project:text-amber-400"
-      >
-        <h2 class="font-semibold transition-colors mr-1.5">
-          {title}
-        </h2>
-        <ExternalLink class="transition-all h-5 w-5" />
-      </div>
-
-      <!-- Description -->
-      <p class="text-balance text-sm">
-        {description}
-      </p>
-      <!-- Technologies -->
-      {
-        technologies && (
-          <div class="flex gap-2 flex-wrap">
-            {technologies.map((tech) => (
-              <span class="rounded-full bg-amber-400/10 text-amber-300 border border-amber-300 text-xs px-2 py-1 mt-2">
-                {tech}
-              </span>
-            ))}
-          </div>
-        )
-      }
-    </div>
+    <!-- Technologies -->
+    {
+      technologies && (
+        <div class="flex flex-wrap gap-2">
+          {technologies.map((tech) => (
+            <span class="mt-2 rounded-full border border-amber-300 bg-amber-400/10 px-2 py-1 text-xs text-amber-300">
+              {tech}
+            </span>
+          ))}
+        </div>
+      )
+    }
   </div>
 
   <!-- Optional link to project -->
   {
     url && (
       <>
-        <div class="absolute inset-0 z-0 hidden transition-all lg:block lg:group-hover/project:bg-zinc-800/50" />
+        <div class="absolute inset-0 -z-10 hidden transition-all lg:block lg:group-hover/project:bg-zinc-800/50" />
 
         <a
           href={url}
           target="_blank"
           rel="noreferrer noopener"
-          class="absolute z-20 w-full h-full inset-0"
+          class="absolute inset-0 h-full w-full"
           aria-label={`${title} (opens in a new tab)`}
         />
       </>
