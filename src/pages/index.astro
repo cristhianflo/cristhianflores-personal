@@ -65,7 +65,7 @@ const projects = [
       alt: "test",
     },
     technologies: ["Tech1", "Tech2", "Tech3"],
-    url: "https://test.com",
+    // url: "https://test.com",
     repositoryUrl: "https://repo.com",
   },
   {
@@ -90,17 +90,17 @@ const projects = [
     <title>Astro</title>
   </head>
   <body
-    class="antialiased font-mono bg-linear-to-b flex flex-col items-center from-zinc-900 to-zinc-950 text-zinc-100"
+    class="flex flex-col items-center bg-linear-to-b from-zinc-900 to-zinc-950 font-mono text-zinc-100 antialiased"
   >
     <main
-      class="min-h-screen container flex flex-col lg:flex-row-reverse px-12"
+      class="container flex min-h-screen flex-col px-12 lg:flex-row-reverse"
     >
       <aside
-        class="lg:w-5/12 lg:sticky lg:top-0 lg:max-h-screen py-28 flex flex-col lg:items-end lg:text-right gap-6"
+        class="flex flex-col gap-6 py-28 lg:sticky lg:top-0 lg:max-h-screen lg:w-5/12 lg:items-end lg:text-right"
       >
-        <div class="w-10/12 flex flex-col gap-6">
+        <div class="flex w-10/12 flex-col gap-6">
           <div class="space-y-2">
-            <h1 class="font-bold text-4xl">Cristhian Flores</h1>
+            <h1 class="text-4xl font-bold">Cristhian Flores</h1>
             <p class="text-xl font-semibold">Fullstack Developer</p>
           </div>
           <p class="text-zinc-400">
@@ -112,7 +112,7 @@ const projects = [
           <NavMenu items={navItems} client:load />
         </div>
       </aside>
-      <div class="w-7/12 text-zinc-300 space-y-24 py-28">
+      <div class="w-7/12 space-y-24 py-28 text-zinc-300">
         <!-- About me -->
         <section class="scroll-mt-16" id="about-me">
           <p>
@@ -127,7 +127,7 @@ const projects = [
           </p>
 
           <p
-            class="border border-amber-400 p-4 bg-amber-900/10 text-amber-400 my-4"
+            class="my-4 border border-amber-400 bg-amber-900/10 p-4 text-amber-400"
           >
             Estudié en la U.P.T.P “Luis Mariano Rivera”, donde obtuve el título
             de Técnico Superior Universitario en Informática entre 2019 y 2022.
@@ -160,7 +160,7 @@ const projects = [
           </div>
         </section>
         <section class="scroll-mt-16" id="projects">
-          <div class="flex flex-col gap-8 group/project-list">
+          <div class="group/project-list flex flex-col gap-8">
             {
               projects.map((project) => (
                 <ProjectCard
