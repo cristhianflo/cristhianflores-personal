@@ -1,8 +1,8 @@
 ---
 import { ExternalLink } from "@lucide/astro";
 import { Image } from "astro:assets";
-import SimpleIcon from "./SimpleIcon.astro";
 import { siGit } from "simple-icons";
+import SimpleIcon from "./SimpleIcon";
 
 interface Props {
   title: string;
@@ -49,7 +49,7 @@ const { title, description, thumbnail, technologies, url, repositoryUrl } =
           class="relative z-10 inline-flex w-max items-center gap-1.5 text-sm text-zinc-100 transition-colors hover:text-amber-400"
           aria-label={`${title} (opens in a new tab)`}
         >
-<SimpleIcon icon={siGit} size="16" />
+          <SimpleIcon icon={siGit} size={16} />
           <span class="pr-2">Go to repository</span>
         </a>
       )
