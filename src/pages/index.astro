@@ -3,6 +3,7 @@ import "../styles/global.css";
 import NavMenu from "../components/NavMenu";
 import ExperienceCard from "../components/ExperienceCard.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import SkillList from "../components/SkillList";
 
 const years = new Date().getFullYear() - 2023;
 
@@ -175,7 +176,9 @@ const projects = [
             }
           </div>
         </section>
-        <section class="min-h-screen" id="skills"></section>
+        <section class="min-h-screen" id="skills">
+          <SkillList client:load />
+        </section>
       </div>
     </main>
   </body>
