@@ -59,25 +59,38 @@ const experience = [
 
 const projects = [
   {
-    title: "Example project",
-    description: "This is an example project description.",
-    // thumbnail: {
-    //   src: "https://placehold.co/163x91",
-    //   alt: "test",
-    // },
-    technologies: ["Tech1", "Tech2", "Tech3"],
-    // url: "https://test.com",
-    repositoryUrl: "https://repo.com",
+    title: "Bachacode Developers",
+    description:
+      "Sitio web personal de mi trabajo como freelancer para la captación de clientes.",
+    thumbnail: {
+      src: "/bachacode-developers.webp",
+      alt: "Diseño de páginas web & aplicaciones para negocios pequeños",
+    },
+    technologies: ["Next.Js", "TailwindCSS", "Node.Js"],
+    url: "https://bachacode.com/es",
+    repositoryUrl:
+      "https://github.com/bachacode-developers/bachacode-developers",
   },
   {
-    title: "Example project",
-    description: "This is an example project description.",
-    thumbnail: {
-      src: "https://placehold.co/163x91",
-      alt: "test",
-    },
-    technologies: ["Tech1", "Tech2", "Tech3"],
-    url: "https://test.com",
+    title: "Intérprete de lenguaje Bachalang",
+    description:
+      "Proyecto experimental que implementa un intérprete de un lenguaje de programación personalizado llamado Bachalang, desarrollado en PHP y con implementaciones de variables, funciones, ciclos, condicionales y mucho más.",
+    technologies: ["PHP"],
+    repositoryUrl: "https://github.com/cristhianflo/php-interpreter-bachalang",
+  },
+  {
+    title: "Intérprete matemático",
+    description:
+      "Proyecto educativo que implementa un intérprete matemático escrito en C, enfocado en el procesamiento y evaluación de expresiones aritméticas. El proyecto explora conceptos de bajo nivel como manejo manual de memoria, estructuras de datos, parsing y evaluación de expresiones.",
+    technologies: ["Lenguaje C"],
+    repositoryUrl: "https://github.com/cristhianflo/c-math-interpreter",
+  },
+  {
+    title: "Bot de Discord",
+    description:
+      "Bot de Discord escrito en Golang, diseñado para gestionar administración básica como asignación de roles a nuevos usuarios, mensajes de bienvenida y comunicación con APIs externas a través de comandos de Discord.",
+    technologies: ["Golang", "Docker"],
+    repositoryUrl: "https://github.com/cristhianflo/gatoc",
   },
 ];
 ---
@@ -113,9 +126,9 @@ const projects = [
           <NavMenu items={navItems} client:load />
         </div>
       </aside>
-      <div class="w-7/12 py-28 text-zinc-300">
+      <div class="w-7/12 text-zinc-300">
         <!-- About me -->
-        <section class="scroll-mt-16 pb-24" id="about-me">
+        <section class="scroll-mt-16 pt-28 pb-24" id="about-me">
           <p>
             Soy un desarrollador web bilingüe con inglés C1 y más de dos años
             trabajando como freelance, creando aplicaciones con React, Vue y
