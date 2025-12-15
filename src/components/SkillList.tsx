@@ -125,16 +125,19 @@ export default function SkillList() {
   return (
     <div className="flex gap-4">
       <SkillNavMenu onSelect={setActiveList} active={activeList} />
-      {Object.entries(lists).map((list) => (
-        <div
-          key={list[0]}
-          className={`w-3/4 flex-wrap content-start items-start gap-4 ${list[0] === activeList ? "flex" : "hidden"}`}
-        >
-          {list[1].map((icon, index) => (
-            <SkillCard key={index} icon={icon} />
-          ))}
-        </div>
-      ))}
+      {Object.entries(lists).map(
+        (list) =>
+          list[0] === activeList && (
+            <div
+              key={list[0]}
+              className="flex w-3/4 flex-wrap content-start items-start gap-4"
+            >
+              {list[1].map((icon, index) => (
+                <SkillCard key={index} icon={icon} />
+              ))}
+            </div>
+          ),
+      )}
     </div>
   );
 }

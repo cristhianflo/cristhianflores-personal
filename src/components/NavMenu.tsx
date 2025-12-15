@@ -3,7 +3,6 @@ import NavItem from "./NavItem";
 
 type navItem = {
   href: string;
-  section: string;
   label: string;
 };
 
@@ -52,7 +51,7 @@ function NavMenu({ items }: NavMenuProps) {
 
   return (
     <nav id="main-navigation">
-      <ul className="flex flex-col items-end gap-2 text-zinc-400">
+      <ul className="flex flex-col gap-2 text-zinc-400 lg:items-end">
         {items.map((item) => (
           <NavItem
             key={item.href}
