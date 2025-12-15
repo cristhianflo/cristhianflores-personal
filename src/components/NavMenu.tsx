@@ -3,6 +3,7 @@ import NavItem from "./NavItem";
 
 type navItem = {
   href: string;
+  section: string;
   label: string;
 };
 
@@ -11,57 +12,42 @@ interface NavMenuProps {
 }
 
 function NavMenu({ items }: NavMenuProps) {
-  const [activeLinks, setActiveLinks] = useState<Set<string>>(() => new Set());
+  const [activeLink, setActiveLink] = useState(items[0].href);
+  const [hoveredLink, setHoveredLink] = useState<string>("");
 
   useEffect(() => {
-    const sections = items.map((item) => {
-      const id = item.href.replace("#", "");
-      return document.getElementById(id);
-    });
+    const sections = items
+      .map((item) => {
+        const id = item.href.replace("#", "");
+        return document.getElementById(id);
+      })
+      .filter((el): el is HTMLElement => Boolean(el));
 
-    const onScroll = () => {
-      const scrollActive = new Set<string>();
-
-      sections.forEach((section, i) => {
-        if (!section) return;
-
+    const handleScroll = () => {
+      const activeSection = sections.find((section) => {
         const rect = section.getBoundingClientRect();
-        if (rect.top <= 100 && rect.bottom >= 100) {
-          scrollActive.add(items[i].href);
-        }
+        return rect.top <= 100 && rect.bottom >= 100;
       });
 
-      setActiveLinks((prev) => {
-        const next = new Set(prev);
+      if (!activeSection) return;
 
-        items.forEach((item) => {
-          if (!scrollActive.has(item.href)) {
-            next.delete(item.href);
-          }
-        });
-
-        scrollActive.forEach((href) => next.add(href));
-
-        return next;
-      });
+      setActiveLink((prev) =>
+        prev === "#" + activeSection.id ? prev : "#" + activeSection.id,
+      );
     };
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
-    document.addEventListener("scroll", onScroll);
-    onScroll();
+    handleScroll();
 
-    return () => document.removeEventListener("scroll", onScroll);
+    return () => document.removeEventListener("scroll", handleScroll);
   }, [items]);
 
   const handleMouseEnter = (href: string) => {
-    setActiveLinks((prev) => new Set(prev).add(href));
+    setHoveredLink(href);
   };
 
-  const handleMouseLeave = (href: string) => {
-    setActiveLinks((prev) => {
-      const next = new Set(prev);
-      next.delete(href);
-      return next;
-    });
+  const handleMouseLeave = () => {
+    setHoveredLink("");
   };
 
   return (
@@ -72,9 +58,9 @@ function NavMenu({ items }: NavMenuProps) {
             key={item.href}
             href={item.href}
             text={item.label}
-            isActive={activeLinks.has(item.href)}
+            isActive={activeLink == item.href || hoveredLink == item.href}
             onMouseEnter={() => handleMouseEnter(item.href)}
-            onMouseLeave={() => handleMouseLeave(item.href)}
+            onMouseLeave={() => handleMouseLeave()}
           />
         ))}
       </ul>

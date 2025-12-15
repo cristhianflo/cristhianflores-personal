@@ -20,6 +20,7 @@ export default function NavItem({
         href={href}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
+        onClick={onMouseEnter}
       >
         {text}
         <span
