@@ -50,7 +50,7 @@ function NavMenu({ items }: NavMenuProps) {
   };
 
   return (
-    <nav id="main-navigation">
+    <nav id="main-navigation" className="hidden lg:block">
       <ul className="flex flex-col gap-2 text-zinc-400 lg:items-end">
         {items.map((item) => (
           <NavItem
