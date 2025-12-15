@@ -107,12 +107,12 @@ const projects = [
     class="flex flex-col items-center bg-zinc-900 font-mono text-zinc-100 antialiased"
   >
     <main
-      class="container flex min-h-screen flex-col px-12 lg:flex-row-reverse"
+      class="container flex min-h-screen flex-col px-6 py-16 lg:flex-row-reverse lg:px-12 lg:py-0"
     >
       <aside
-        class="flex h-screen flex-col gap-6 py-24 lg:sticky lg:top-0 lg:max-h-screen lg:w-5/12 lg:items-end lg:text-right"
+        class="lg:sticky lg:top-0 lg:h-screen lg:w-5/12 lg:items-end lg:py-24 lg:text-right"
       >
-        <div class="flex h-full w-10/12 flex-col justify-between">
+        <div class="flex h-full w-10/12 flex-col justify-between gap-6">
           <div class="space-y-4">
             <div class="space-y-2">
               <h1 class="text-4xl font-bold">Cristhian Flores</h1>
@@ -133,7 +133,12 @@ const projects = [
       </aside>
       <div class="w-full text-zinc-300 lg:w-7/12">
         <!-- About me -->
-        <section class="scroll-mt-16 pt-28 pb-24" id="about-me">
+        <section class="scroll-mt-16 py-16 lg:py-24" id="about-me">
+          <h2
+            class="text-md pb-3 tracking-widest text-amber-400 uppercase lg:sr-only lg:hidden"
+          >
+            Sobre mí
+          </h2>
           <p>
             Soy un desarrollador web bilingüe con inglés C1 y más de dos años
             trabajando como freelance, creando aplicaciones con React, Vue y
@@ -161,7 +166,12 @@ const projects = [
             problemas que me causé por andar trasteando con Linux…
           </p>
         </section>
-        <section class="scroll-mt-16 pb-24" id="work-experience">
+        <section class="scroll-mt-16 pb-16 lg:pb-24" id="work-experience">
+          <h2
+            class="text-md pb-3 tracking-widest text-amber-400 uppercase lg:sr-only lg:hidden"
+          >
+            Experiencia Laboral
+          </h2>
           <div class="group/experience-list flex flex-col gap-8">
             {
               experience.map((job) => (
@@ -178,7 +188,12 @@ const projects = [
             }
           </div>
         </section>
-        <section class="scroll-mt-16 pb-24" id="projects">
+        <section class="scroll-mt-16 pb-16 lg:pb-24" id="projects">
+          <h2
+            class="text-md pb-3 tracking-widest text-amber-400 uppercase lg:sr-only lg:hidden"
+          >
+            Proyectos
+          </h2>
           <div class="group/project-list flex flex-col gap-8">
             {
               projects.map((project) => (
@@ -194,7 +209,12 @@ const projects = [
             }
           </div>
         </section>
-        <section class="min-h-screen" id="skills">
+        <section class="min-h-screen scroll-mt-16" id="skills">
+          <h2
+            class="text-md pb-3 tracking-widest text-amber-400 uppercase lg:sr-only lg:hidden"
+          >
+            Habilidades
+          </h2>
           <SkillList client:load />
         </section>
       </div>
