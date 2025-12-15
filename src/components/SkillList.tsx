@@ -90,6 +90,7 @@ const SkillNavMenu = ({
     <ul className="flex w-48 flex-col transition-colors">
       {listItems.map((item) => (
         <li
+          key={item.list}
           onClick={() => onSelect(item.list)}
           className={`w-full cursor-pointer border-r-2 py-2 pr-8 pl-4 transition-colors hover:text-amber-400 ${active === item.list ? "text-amber-400" : ""}`}
         >
