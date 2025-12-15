@@ -4,7 +4,7 @@ import NavMenu from "../components/NavMenu";
 import ExperienceCard from "../components/ExperienceCard.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import SkillList from "../components/SkillList";
-
+import SocialLinks from "../components/SocialLinks.astro";
 const years = new Date().getFullYear() - 2023;
 
 const navItems = [
@@ -104,26 +104,31 @@ const projects = [
     <title>Astro</title>
   </head>
   <body
-    class="flex flex-col items-center bg-linear-to-b from-zinc-900 to-zinc-950 font-mono text-zinc-100 antialiased"
+    class="flex flex-col items-center bg-zinc-900 font-mono text-zinc-100 antialiased"
   >
     <main
       class="container flex min-h-screen flex-col px-12 lg:flex-row-reverse"
     >
       <aside
-        class="flex flex-col gap-6 py-28 lg:sticky lg:top-0 lg:max-h-screen lg:w-5/12 lg:items-end lg:text-right"
+        class="flex h-screen flex-col gap-6 py-24 lg:sticky lg:top-0 lg:max-h-screen lg:w-5/12 lg:items-end lg:text-right"
       >
-        <div class="flex w-10/12 flex-col gap-6">
-          <div class="space-y-2">
-            <h1 class="text-4xl font-bold">Cristhian Flores</h1>
-            <p class="text-xl font-semibold">Fullstack Developer</p>
+        <div class="flex h-full w-10/12 flex-col justify-between">
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <h1 class="text-4xl font-bold">Cristhian Flores</h1>
+              <p class="text-xl font-semibold">Fullstack Developer</p>
+            </div>
+            <p class="text-zinc-400">
+              Desarrollador web con más de {years} años de experiencia creando aplicaciones
+              profesionales
+            </p>
           </div>
-          <p class="text-zinc-400">
-            Desarrollador web con más de {years} años de experiencia creando aplicaciones
-            profesionales
-          </p>
 
           <!-- Navigation menu  -->
           <NavMenu items={navItems} client:load />
+
+          <!-- Social links -->
+          <SocialLinks />
         </div>
       </aside>
       <div class="w-7/12 text-zinc-300">

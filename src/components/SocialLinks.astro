@@ -1,0 +1,41 @@
+---
+import Linkedin from "../icons/linkedin.svg";
+import Github from "../icons/github.svg";
+const links = [
+  {
+    icon: Github,
+    url: "https://github.com/cristhianflo",
+    title: "GitHub",
+  },
+  {
+    icon: Linkedin,
+    url: "https://www.linkedin.com/in/cristhian-flo/",
+    title: "LinkedIn",
+  },
+];
+---
+
+<div class="flex justify-end gap-6">
+  {
+    links.map(({ title, url, icon: Icon }) => (
+      <a
+        rel="noreferrer noopener"
+        target="_blank"
+        aria-label={`${title} (opens in a new tab)`}
+        title={title}
+        href={url}
+        class="text-zinc-400 transition-colors hover:text-amber-400"
+      >
+        <Icon
+          height={24}
+          width={24}
+          style={{
+            display: "inline-block",
+            verticalAlign: "middle",
+            fill: "currentColor",
+          }}
+        />
+      </a>
+    ))
+  }
+</div>
