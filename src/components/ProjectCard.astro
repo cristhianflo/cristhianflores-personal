@@ -1,9 +1,8 @@
 ---
-import { ExternalLink } from "@lucide/astro";
 import { Image } from "astro:assets";
 import { siGit } from "simple-icons";
 import SimpleIcon from "./SimpleIcon";
-
+import ExternalLink from "../icons/external-link.svg";
 interface Props {
   title: string;
   description: string;
@@ -32,7 +31,19 @@ const { title, description, thumbnail, technologies, url, repositoryUrl } =
       <h2 class="mr-1.5 font-semibold">
         {title}
       </h2>
-      {url && <ExternalLink size={16} />}
+
+      {
+        url && (
+          <ExternalLink
+            width={20}
+            height={20}
+            style={{
+              display: "inline-block",
+              verticalAlign: "middle",
+            }}
+          />
+        )
+      }
     </div>
 
     <!-- Description -->
