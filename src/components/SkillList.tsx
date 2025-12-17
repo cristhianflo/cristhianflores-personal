@@ -30,7 +30,14 @@ import {
   type SimpleIcon as SimpleIconType,
 } from "simple-icons";
 import SimpleIcon from "./SimpleIcon";
-import { useState, type Dispatch, type SetStateAction } from "react";
+import {
+  createRef,
+  useState,
+  type Dispatch,
+  type RefObject,
+  type SetStateAction,
+} from "react";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const SkillCard = ({ icon }: { icon: SimpleIconType }) => {
   return (
@@ -87,7 +94,7 @@ const SkillNavMenu = ({
     },
   ];
   return (
-    <ul className="flex w-48 flex-col transition-colors">
+    <ul className="flex w-48 min-w-48 flex-col transition-colors">
       {listItems.map((item) => (
         <li
           key={item.list}
@@ -103,41 +110,74 @@ const SkillNavMenu = ({
 
 export default function SkillList() {
   const [activeList, setActiveList] = useState<ListName>("languages");
-  const lists: {
-    [key in ListName]: Array<SimpleIconType>;
-  } = {
-    languages: [siPhp, siGo, siJavascript, siTypescript, siHtml5, siCss, siC],
-    "front-end": [
-      siReact,
-      siVuedotjs,
-      siNextdotjs,
-      siAstro,
-      siLivewire,
-      siAlpinedotjs,
-      siJquery,
-      siTailwindcss,
-    ],
-    "back-end": [siGin, siLaravel, siNodedotjs, siPocketbase, siWordpress],
-    database: [siMysql, siPostgresql, siMongodb],
-    "dev-tools": [siDocker, siGit, siGithubactions, siPostman, siCloudflare],
-  };
+  const lists: Array<{
+    id: string;
+    items: Array<SimpleIconType>;
+    nodeRef: RefObject<HTMLDivElement> | undefined;
+  }> = [
+    {
+      id: "languages",
+      items: [siPhp, siGo, siJavascript, siTypescript, siHtml5, siCss, siC],
+      nodeRef: createRef(),
+    },
+    {
+      id: "front-end",
+      items: [
+        siReact,
+        siVuedotjs,
+        siNextdotjs,
+        siAstro,
+        siLivewire,
+        siAlpinedotjs,
+        siJquery,
+        siTailwindcss,
+      ],
+
+      nodeRef: createRef(),
+    },
+    {
+      id: "back-end",
+      items: [siGin, siLaravel, siNodedotjs, siPocketbase, siWordpress],
+      nodeRef: createRef(),
+    },
+    {
+      id: "database",
+      items: [siMysql, siPostgresql, siMongodb],
+      nodeRef: createRef(),
+    },
+    {
+      id: "dev-tools",
+      items: [siDocker, siGit, siGithubactions, siPostman, siCloudflare],
+      nodeRef: createRef(),
+    },
+  ];
 
   return (
-    <div className="flex gap-4">
+    <div className="relative flex gap-4">
       <SkillNavMenu onSelect={setActiveList} active={activeList} />
-      {Object.entries(lists).map(
-        (list) =>
-          list[0] === activeList && (
-            <div
-              key={list[0]}
-              className="flex w-3/4 flex-wrap content-start items-start gap-4"
-            >
-              {list[1].map((icon, index) => (
-                <SkillCard key={index} icon={icon} />
-              ))}
-            </div>
-          ),
-      )}
+      <TransitionGroup mode="out-in" className="relative w-full">
+        {lists.map(
+          (list) =>
+            list.id === activeList && (
+              <CSSTransition
+                key={list.id}
+                nodeRef={list.nodeRef}
+                timeout={200}
+                classNames="fade"
+                unmountOnExit
+              >
+                <div
+                  className="absolute inset-0 flex w-full flex-wrap content-start items-start gap-4"
+                  ref={list.nodeRef}
+                >
+                  {list.items.map((icon, index) => (
+                    <SkillCard key={index} icon={icon} />
+                  ))}
+                </div>
+              </CSSTransition>
+            ),
+        )}
+      </TransitionGroup>
     </div>
   );
 }
