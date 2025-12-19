@@ -7,6 +7,7 @@ import SkillList from "../components/SkillList";
 import SocialLinks from "../components/SocialLinks.astro";
 import { siAstro, siTailwindcss } from "simple-icons";
 import SimpleIcon from "../components/SimpleIcon";
+import RightArrowAlt from "../icons/right-arrow-alt.svg";
 
 const years = new Date().getFullYear() - 2023;
 
@@ -191,7 +192,7 @@ const projects = [
             }
           </div>
         </section>
-        <section class="scroll-mt-16 pb-16 lg:pb-24" id="projects">
+        <section class="scroll-mt-16" id="projects">
           <h2
             class="text-md pb-3 tracking-widest text-amber-400 uppercase lg:sr-only lg:hidden"
           >
@@ -212,7 +213,7 @@ const projects = [
             }
           </div>
         </section>
-        <section class="scroll-mt-16 pb-16 lg:pb-24" id="skills">
+        <section class="scroll-mt-16 pt-16 pb-8 lg:pt-24 lg:pb-16" id="skills">
           <h2
             class="text-md pb-3 tracking-widest text-amber-400 uppercase lg:sr-only lg:hidden"
           >
@@ -220,6 +221,27 @@ const projects = [
           </h2>
           <SkillList client:load />
         </section>
+        <div class="pb-16 lg:pb-24">
+          <p class="pb-4">Si quieres saber mas sobre mí...</p>
+          <a
+            class="group text-zinc-100 transition-colors hover:text-amber-400"
+            rel="noreferrer noopener"
+            target="_blank"
+            href="/resume-ES.pdf"
+            aria-label="Astro (abre en una nueva pestaña)"
+            >Ver currículum
+            <RightArrowAlt
+              width={20}
+              height={20}
+              style={{
+                display: "inline-block",
+                verticalAlign: "middle",
+                fill: "currentColor",
+              }}
+              class="hover transition-transform group-hover:translate-x-1.5"
+            />
+          </a>
+        </div>
 
         <footer class="pb-16 text-zinc-400 lg:pb-24">
           Hecho con <a
