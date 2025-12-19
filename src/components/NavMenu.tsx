@@ -23,15 +23,28 @@ function NavMenu({ items }: NavMenuProps) {
       .filter((el): el is HTMLElement => Boolean(el));
 
     const handleScroll = () => {
-      const activeSection = sections.find((section) => {
+      let maxVisible = 0;
+      let activeSection: HTMLElement | null = null;
+
+      sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
-        return rect.top <= 100 && rect.bottom >= 100;
+
+        const visibleTop = Math.max(rect.top, 0);
+        const visibleBottom = Math.min(rect.bottom, window.innerHeight);
+        const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+
+        if (visibleHeight > maxVisible) {
+          maxVisible = visibleHeight;
+          activeSection = section;
+        }
+
+        return activeSection;
       });
 
       if (!activeSection) return;
 
       setActiveLink((prev) =>
-        prev === "#" + activeSection.id ? prev : "#" + activeSection.id,
+        prev === "#" + activeSection?.id ? prev : "#" + activeSection?.id,
       );
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
